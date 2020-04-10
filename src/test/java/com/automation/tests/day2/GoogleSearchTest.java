@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class GoogleSearchTest {
     public static void main(String[] args) throws Exception {
 
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().version("79").setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http:/google.com");
         Thread.sleep(2000);
@@ -25,7 +25,9 @@ public class GoogleSearchTest {
         Thread.sleep(2000);
         //if see <a> element , it's calls link
         // visible text of this link , can be used
-        WebElement news = driver.findElement(By.linkText("news"));
+        WebElement news = driver.findElement(By.linkText("News"));
+        news.click();
+        Thread.sleep(4000);
         driver.quit();
     }
 }
