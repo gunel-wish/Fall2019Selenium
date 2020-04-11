@@ -82,23 +82,13 @@ public class BrowserUtils {
      * @param name screenshot name
      * @return path to the screenshot
      */
+
     public static String getScreenshot(String name) {
         //adding date and time to screenshot name, to make screenshot unique
-        name = new Date().toString().replace(" ", "_").replace(":", "-") + "_" + name;
+        name = LocalDateTime.now()+ "-" + name;
         //where we gonna store a screenshot
-        String path = "";
-
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-            path = System.getProperty("user.dir") + "/test-output/screenshots/" + name + ".png";
-        } else {
-            path = System.getProperty("user.dir") + "\\test-output\\screenshots\\" + name + ".png";
-        }
-
-        System.out.println("OS name: " + System.getProperty("os.name"));
-        System.out.println("Screenshot is here: " + path);
-        //since our reference type is a WebDriver
-        //we cannot see methods from TakesScreenshot interface
-        //that's why do casting
+        String path =System.getProperty("user.dir") + "/test-output/screenshots/" + name + ".png";
+        System.out.println("Screenshot is here:" + path);
         TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
         //take screenshot of web browser, and save it as a file
         File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
