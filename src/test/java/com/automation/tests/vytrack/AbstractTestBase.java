@@ -1,4 +1,6 @@
 package com.automation.tests.vytrack;
+
+
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
@@ -18,10 +20,10 @@ import java.io.IOException;
 public abstract class AbstractTestBase {
     //will be visible in the subclass, regardless on subclass location (same package or no)
     protected WebDriverWait wait;
-
+    protected Actions actions;
 
     /*
-    protected Actions actions;
+
 
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
@@ -56,14 +58,7 @@ public abstract class AbstractTestBase {
         report.flush();//to release a report
     }
 
-    @BeforeMethod
-    public void setup() {
-        String URL = ConfigurationReader.getProperty("qa3");
-        Driver.getDriver().get(URL);
-        Driver.getDriver().manage().window().maximize();
-        wait = new WebDriverWait(Driver.getDriver(), 25);
-        actions = new Actions(Driver.getDriver());
-    }
+
 
 
     @AfterMethod
@@ -82,5 +77,21 @@ public abstract class AbstractTestBase {
         BrowserUtils.wait(2);
         Driver.closeDriver();
     }
-*/
+
+
+     */
+    @BeforeMethod
+    public void setup() {
+        String URL = ConfigurationReader.getProperty("qa3");
+        Driver.getDriver().get(URL);
+        Driver.getDriver().manage().window().maximize();
+        wait = new WebDriverWait(Driver.getDriver(), 15);
+        actions = new Actions(Driver.getDriver());
+    }
+
+    @AfterMethod
+    public  void teardown(){
+        Driver.closeDriver();
+    }
+
 }
