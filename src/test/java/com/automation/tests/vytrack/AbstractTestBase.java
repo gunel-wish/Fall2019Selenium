@@ -5,9 +5,9 @@ import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
 
-//import com.aventstack.extentreports.ExtentReports;
-//import com.aventstack.extentreports.ExtentTest;
-//import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -24,7 +24,7 @@ public abstract class AbstractTestBase {
 
 
 
-/*
+
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest test;
@@ -59,20 +59,20 @@ public abstract class AbstractTestBase {
     }
 
 
-*/
+
 
     @AfterMethod
-    public void teardown(ITestResult iTestResult)  {
+    public void teardown(ITestResult iTestResult) throws  IOException  {
         //ITestResult class describes the result of a test.
         //if test failed, take a screenshot
         //no failure - no screenshot
         if (iTestResult.getStatus() == ITestResult.FAILURE) {
             //screenshot will have a name of the test
-          //  String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
-          //  test.fail(iTestResult.getName());//attach test name that failed
+           String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
+            test.fail(iTestResult.getName());//attach test name that failed
             BrowserUtils.getScreenshot(iTestResult.getName());
-          //  test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
-          //  test.fail(iTestResult.getThrowable());//attach console output
+            test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
+           test.fail(iTestResult.getThrowable());//attach console output
         }
         BrowserUtils.wait(2);
         Driver.closeDriver();

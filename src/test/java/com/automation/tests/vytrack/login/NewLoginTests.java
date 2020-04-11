@@ -17,7 +17,7 @@ public class NewLoginTests extends AbstractTestBase {
         LoginPage loginPage = new LoginPage();
         loginPage.login();
 
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Dash");
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
         //if assertion passed, it will set test status in report to passed
 
 
