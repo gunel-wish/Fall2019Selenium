@@ -17,7 +17,7 @@ public class NewLoginTests extends AbstractTestBase {
         LoginPage loginPage = new LoginPage();
         loginPage.login();
 
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Dash");
         //if assertion passed, it will set test status in report to passed
 
 
@@ -34,7 +34,7 @@ public class NewLoginTests extends AbstractTestBase {
         loginPage.login("wrong","wrong");
         Assert.assertEquals(loginPage.getWarningMessageText(),"Invalid user name or password.");
         //take a secreenshot
-      BrowserUtils.getScreenshot("loginPage");
+        BrowserUtils.getScreenshot("warning_massage");
 
   }
 

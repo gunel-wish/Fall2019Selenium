@@ -59,20 +59,20 @@ public abstract class AbstractTestBase {
     }
 
 
-
+*/
 
     @AfterMethod
-    public void teardown(ITestResult iTestResult) throws IOException {
+    public void teardown(ITestResult iTestResult)  {
         //ITestResult class describes the result of a test.
         //if test failed, take a screenshot
         //no failure - no screenshot
         if (iTestResult.getStatus() == ITestResult.FAILURE) {
             //screenshot will have a name of the test
-            String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
-            test.fail(iTestResult.getName());//attach test name that failed
-            BrowserUtils.wait(2);
-            test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
-            test.fail(iTestResult.getThrowable());//attach console output
+          //  String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
+          //  test.fail(iTestResult.getName());//attach test name that failed
+            BrowserUtils.getScreenshot(iTestResult.getName());
+          //  test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
+          //  test.fail(iTestResult.getThrowable());//attach console output
         }
         BrowserUtils.wait(2);
         Driver.closeDriver();
@@ -80,7 +80,7 @@ public abstract class AbstractTestBase {
 
 
 
- */
+
 
     @BeforeMethod
     public void setup() {
@@ -91,9 +91,5 @@ public abstract class AbstractTestBase {
         actions = new Actions(Driver.getDriver());
     }
 
-    @AfterMethod
-    public  void teardown(){
-        Driver.closeDriver();
-    }
 
 }
