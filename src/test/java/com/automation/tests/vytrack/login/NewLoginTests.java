@@ -14,12 +14,15 @@ public class NewLoginTests extends AbstractTestBase {
 
     @Test
     public void verifyPageTitle() {
+        //test-->EXtendTest object
+        // we must  add to test at the begining
+        //test = report.create
+        test = report.createTest("Verify page title");
         LoginPage loginPage = new LoginPage();
         loginPage.login();
-
         Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
         //if assertion passed, it will set test status in report to passed
-
+      test.pass("Page title Dashboard was verified");
 
     }
 
