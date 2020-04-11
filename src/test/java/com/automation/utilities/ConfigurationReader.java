@@ -1,11 +1,12 @@
 package com.automation.utilities;
 
+
 import java.io.FileInputStream;
 import java.util.Properties;
 
 public class ConfigurationReader {
-
     private static Properties configFile;
+
     static {
         try {
             //location of properties file
@@ -14,7 +15,7 @@ public class ConfigurationReader {
             FileInputStream input = new FileInputStream(path);
             //create object of Properties class
             configFile = new Properties();
-            //load properties file into properties  object
+            //load properties file into Properties object
             configFile.load(input);
             //close the input s
             input.close();
@@ -22,14 +23,16 @@ public class ConfigurationReader {
             e.printStackTrace();
             throw new RuntimeException("Failed to load properties file!");
         }
+
     }
 
     /**
-     * This method returns property value from  configuration.properties files
+     * This method returns property value from configuration.properties file
      * @param keyName property name
      * @return property value
      */
     public static String getProperty(String keyName) {
         return configFile.getProperty(keyName);
     }
+
 }
