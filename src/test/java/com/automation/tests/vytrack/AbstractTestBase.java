@@ -1,6 +1,5 @@
 package com.automation.tests.vytrack;
 
-
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.automation.utilities.Driver;
@@ -21,9 +20,6 @@ public abstract class AbstractTestBase {
     //will be visible in the subclass, regardless on subclass location (same package or no)
     protected WebDriverWait wait;
     protected Actions actions;
-
-
-
 
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
@@ -58,30 +54,6 @@ public abstract class AbstractTestBase {
         report.flush();//to release a report
     }
 
-
-
-
-    @AfterMethod
-    public void teardown(ITestResult iTestResult) throws  IOException  {
-        //ITestResult class describes the result of a test.
-        //if test failed, take a screenshot
-        //no failure - no screenshot
-        if (iTestResult.getStatus() == ITestResult.FAILURE) {
-            //screenshot will have a name of the test
-           String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
-            test.fail(iTestResult.getName());//attach test name that failed
-            BrowserUtils.getScreenshot(iTestResult.getName());
-            test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
-           test.fail(iTestResult.getThrowable());//attach console output
-        }
-        BrowserUtils.wait(2);
-        Driver.closeDriver();
-    }
-
-
-
-
-
     @BeforeMethod
     public void setup() {
         String URL = ConfigurationReader.getProperty("qa3");
@@ -91,5 +63,22 @@ public abstract class AbstractTestBase {
         actions = new Actions(Driver.getDriver());
     }
 
+
+    @AfterMethod
+    public void teardown(ITestResult iTestResult) throws IOException {
+        //ITestResult class describes the result of a test.
+        //if test failed, take a screenshot
+        //no failure - no screenshot
+        if (iTestResult.getStatus() == ITestResult.FAILURE) {
+            //screenshot will have a name of the test
+            String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
+            test.fail(iTestResult.getName());//attach test name that failed
+            BrowserUtils.wait(2);
+            test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
+            test.fail(iTestResult.getThrowable());//attach console output
+        }
+        BrowserUtils.wait(2);
+        Driver.closeDriver();
+    }
 
 }
