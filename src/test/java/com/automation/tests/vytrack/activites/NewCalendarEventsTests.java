@@ -65,6 +65,24 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     }
 
+    @Test(dataProvider = "calendarEvents")
+    public void createCalendarEvenTest( String title ,String description){
+        test = report.createTest("Create calendar event");
+        loginPage.login();
+        calendarEventsPage.navigateTo("Activities", "Calendar Events");
+        calendarEventsPage.clickToCreateCalendarEvent();
+        calendarEventsPage.enterCalendarEventTitle(title);
+        calendarEventsPage.enterCalendarEventDescription(description);
+        calendarEventsPage.clickOnSaveAndClose();
+
+    }
+
+    @DataProvider
+    public  Object[][] calendarEvents(){
+        return  new Object[][]{
+                {"Daily stand-up","Scrum meeting to provide updates"}
+        };
+    }
 
 
 
