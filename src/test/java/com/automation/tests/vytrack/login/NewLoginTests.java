@@ -52,6 +52,7 @@ public class NewLoginTests extends AbstractTestBase {
       LoginPage loginPage = new LoginPage();
       loginPage.login( userName, password);
       test.info("Login as " + userName);
+      BrowserUtils.wait(2);
       Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
       test.pass("Page title Dashboard was verified");
 

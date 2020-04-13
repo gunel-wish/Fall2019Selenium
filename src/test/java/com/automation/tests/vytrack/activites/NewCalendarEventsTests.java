@@ -63,9 +63,10 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         List<String> expected = Arrays.asList("TITLE","CALENDAR","START" ,"END","RECURRENT" ,"RECURRENCE","INVITATION STATUS");
      Assert.assertEquals(calendarEventsPage.getColumnNames(),expected);
 
-
-
     }
+
+
+
 
 
 
