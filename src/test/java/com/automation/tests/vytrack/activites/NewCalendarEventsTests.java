@@ -67,6 +67,7 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test(dataProvider = "calendarEvents")
     public void createCalendarEvenTest( String title ,String description){
+        //only for extent report , To create a test in html report
         test = report.createTest("Create calendar event");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -74,6 +75,12 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         calendarEventsPage.enterCalendarEventTitle(title);
         calendarEventsPage.enterCalendarEventDescription(description);
         calendarEventsPage.clickOnSaveAndClose();
+
+        //verify that calendar event info  is correct
+        Assert.assertEquals(calendarEventsPage.getGeneralInfoDescriptionText(),description);
+        Assert.assertEquals(calendarEventsPage.getGeneralInfoTitleText(),title);
+        // for extend
+        test.pass("Calendar event was created successfully");
 
     }
 
