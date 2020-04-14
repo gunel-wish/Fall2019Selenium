@@ -68,6 +68,9 @@ public class NewCalendarEventsTests extends AbstractTestBase {
     @Test(dataProvider = "calendarEvents")
     public void createCalendarEvenTest( String title ,String description){
         //only for extent report , To create a test in html report
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
         test = report.createTest("Create calendar event");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -87,7 +90,9 @@ public class NewCalendarEventsTests extends AbstractTestBase {
     @DataProvider
     public  Object[][] calendarEvents(){
         return  new Object[][]{
-                {"Daily stand-up","Scrum meeting to provide updates"}
+                {"Daily stand-up","Scrum meeting to provide updates"},
+                {"Sprint Planning" , "Scrum meeting where team discussing previous sprint"},
+                {"Sprint Planning", "Scrum meeting where team discussing backlog for following sprint"}
         };
     }
 
