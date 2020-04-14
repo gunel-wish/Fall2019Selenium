@@ -1,6 +1,5 @@
 package com.automation.pages.activities;
 
-
 import com.automation.pages.AbstractPageBase;
 import com.automation.utilities.BrowserUtils;
 import org.openqa.selenium.By;
