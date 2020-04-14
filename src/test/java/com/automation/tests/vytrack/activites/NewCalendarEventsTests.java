@@ -79,7 +79,7 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         //verify that calendar event info  is correct
         Assert.assertEquals(calendarEventsPage.getGeneralInfoDescriptionText(),description);
         Assert.assertEquals(calendarEventsPage.getGeneralInfoTitleText(),title);
-        // for extend
+        // for extend report , specify test pass in report (if all assertion passed)
         test.pass("Calendar event was created successfully");
 
     }
