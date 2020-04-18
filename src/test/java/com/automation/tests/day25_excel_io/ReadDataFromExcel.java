@@ -100,8 +100,26 @@ public class ReadDataFromExcel {
 
          String value = firstCell.getStringCellValue();
 
-         System.out.println(value);
+         String secondCellValue = firstRow.getCell(1).getStringCellValue();
 
+         System.out.println(value);
+       System.out.println(secondCellValue);
+
+       int lastCell = firstRow.getLastCellNum();
+
+       System.out.println("#####################");
+       for (int i =0; i< lastCell; i++){
+           System.out.print(firstRow.getCell(i) +" | ");
+       }
+
+       //last row is 16th -->index is 15
+       //index of last row
+       int numberOfRows = workSheet.getLastRowNum();
+       //returns how many rows at all
+       int numberOfRows2 = workSheet.getPhysicalNumberOfRows();
+
+       System.out.println("\nIndex of last rows: " + numberOfRows);
+       System.out.println("\nNumbers of rows: " + numberOfRows2);
 
      }
 
