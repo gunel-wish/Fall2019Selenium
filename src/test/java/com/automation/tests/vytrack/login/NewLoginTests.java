@@ -88,6 +88,7 @@ public class NewLoginTests extends AbstractTestBase {
     }
 
 
+
     @Test(dataProvider = "credentialsFromExcel")
     public void loginTestWithExcel2(String execute, String username, String password, String firstname, String lastname, String result) {
 
@@ -104,11 +105,13 @@ public class NewLoginTests extends AbstractTestBase {
             test.pass("Successfully logged in as " + username);
             excelUtil.setCellData("PASSED", "result", row++);
 
-        } else {
+        } else if (execute.equals("n")){
             test.skip("Test was skipped for user: " + username);
             excelUtil.setCellData("SKIPPED", "result", row++);
             //to skip some test in testng
             throw new SkipException("Test was skipped for user: " + username);
+        } else{
+            excelUtil.setCellData("Failed" , "result", ++ row);
         }
     }
 
