@@ -1,5 +1,7 @@
 package com.automation.tests.vytrack.login;
 
+
+
 import com.automation.pages.LoginPage;
 import com.automation.tests.vytrack.AbstractTestBase;
 import com.automation.utilities.BrowserUtils;
@@ -88,7 +90,6 @@ public class NewLoginTests extends AbstractTestBase {
     }
 
 
-
     @Test(dataProvider = "credentialsFromExcel")
     public void loginTestWithExcel2(String execute, String username, String password, String firstname, String lastname, String result) {
 
@@ -105,13 +106,11 @@ public class NewLoginTests extends AbstractTestBase {
             test.pass("Successfully logged in as " + username);
             excelUtil.setCellData("PASSED", "result", row++);
 
-        } else if (execute.equals("n")){
+        } else {
             test.skip("Test was skipped for user: " + username);
             excelUtil.setCellData("SKIPPED", "result", row++);
             //to skip some test in testng
             throw new SkipException("Test was skipped for user: " + username);
-        } else{
-            excelUtil.setCellData("Failed" , "result", ++ row);
         }
     }
 
@@ -127,6 +126,5 @@ public class NewLoginTests extends AbstractTestBase {
     //Object[][] or Object[] or Iterator<Object[]>
     //Object[] - 1 column with a data
     //Object[][] 2+
-
 
 }
